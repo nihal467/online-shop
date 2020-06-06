@@ -101,10 +101,7 @@ class ProductsHeader extends Component {
           min={minPrice}
           max={maxPrice}
           onSave={(min, max) => {
-            // Close the dialog
             this.setState({ openPriceDialog: false });
-
-            // and update query string with new values
             updateQueryStr({ minPrice: min, maxPrice: max, page: 1 });
           }}
           onClose={() =>
