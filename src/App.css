@@ -1,5 +1,12 @@
-.header, .menu, .content {
-  box-sizing: border-box;
+html,
+#root,
+body {
+  height: 100%;
+  margin: 0px;
+}
+
+body {
+  font-family: Helvetica, Arial;
 }
 
 .app {
@@ -7,15 +14,6 @@
   flex-direction: column;
   display: flex;
   min-width: 900px;
-}
-
-html, #root, body {
-  height: 100%;
-  margin: 0px;
-}
-
-body {
-  font-family: Helvetica, Arial;
 }
 
 .app-body {
@@ -28,12 +26,11 @@ body {
   flex: 1;
 }
 
-
-.circular{
-  position:absolute;  
-  left:0; right:0;
-  top:0; bottom:0;
-  margin:auto;
+.circular {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
-
- 

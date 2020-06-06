@@ -10,23 +10,23 @@ import { withRouter } from "react-router-dom";
 
 class ProductsHeader extends Component {
   state = {
-    openPriceDialog: false
+    openPriceDialog: false,
   };
 
   render() {
-    let { parsedQS, totalItemsCount, updateQueryString } = this.props;
-  
-    // Grab some values from the query string
-    let usePriceFilter = parsedQS.usePriceFilter === "true";
-    let minPrice = parsedQS.minPrice || 0;
-    let maxPrice = parsedQS.maxPrice || 1000;
-    let sortValue = parsedQS.sortValue || "lh";
-    let keyword = parsedQS.term;
-    let category = parsedQS.category;
+    let { parsedQueryStr, totalItemsCount, updateQueryStr } = this.props;
+
+    // Lot of values come from the query string.
+    let usePriceFilter = parsedQueryStr.usePriceFilter === "true";
+    let minPrice = parsedQueryStr.minPrice || 0;
+    let maxPrice = parsedQueryStr.maxPrice || 1000;
+    let sortValue = parsedQueryStr.sortValue || "lh";
+    let keyword = parsedQueryStr.term;
+    let category = parsedQueryStr.category;
 
     let subtitle = (
-      <React.Fragment>
-        <span style={{ fontSize: 12, color: "gray", marginTop: 5 }}>
+      <div>
+        <span style={{ fontSize: 12, color: "gray" }}>
           {totalItemsCount +
             " result" +
             (totalItemsCount === 1 ? " " : "s ") +
@@ -38,13 +38,12 @@ class ProductsHeader extends Component {
               fontWeight: "bold",
               fontSize: 12,
               color: "gray",
-              marginTop: 5
             }}
           >
             {keyword}
           </span>
         )}
-      </React.Fragment>
+      </div>
     );
 
     return (
@@ -60,10 +59,10 @@ class ProductsHeader extends Component {
               <Checkbox
                 color="primary"
                 checked={usePriceFilter}
-                onChange={e => {
-                  updateQueryString({
+                onChange={(e) => {
+                  updateQueryStr({
                     usePriceFilter: e.target.checked,
-                    page: 1
+                    page: 1,
                   });
                 }}
               />
@@ -77,18 +76,18 @@ class ProductsHeader extends Component {
                 style={{ marginRight: 20 }}
                 onClick={() => {
                   this.setState({
-                    openPriceDialog: true
+                    openPriceDialog: true,
                   });
                 }}
               >
-                {minPrice + "$ - " + maxPrice + "$"}
+                {`${minPrice}$-${maxPrice}$`}
               </Button>
             </Tooltip>
           )}
           <Select
             value={sortValue}
-            onChange={e => {
-              updateQueryString({ sortValue: e.target.value });
+            onChange={(e) => {
+              updateQueryStr({ sortValue: e.target.value });
             }}
           >
             <MenuItem value={"lh"}>Sort by price: low to high</MenuItem>
@@ -102,12 +101,15 @@ class ProductsHeader extends Component {
           min={minPrice}
           max={maxPrice}
           onSave={(min, max) => {
+            // Close the dialog
             this.setState({ openPriceDialog: false });
-            updateQueryString({ minPrice: min, maxPrice: max, page: 1 });
+
+            // and update query string with new values
+            updateQueryStr({ minPrice: min, maxPrice: max, page: 1 });
           }}
           onClose={() =>
             this.setState({
-              openPriceDialog: false
+              openPriceDialog: false,
             })
           }
         />
