@@ -5,9 +5,8 @@ import Auth from "../../Auth";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { setLoggedInUser } from "../../Redux/Actions";
-import Avatar from '@material-ui/core/Avatar';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 class ConnectedLogin extends Component {
   state = {
@@ -24,13 +23,15 @@ class ConnectedLogin extends Component {
     }
 
     return (
-      <div style={{
-        height: "100%",
-        display: "flex",
-        justifyContent: "center",
+      <div
+        style={{
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
 
-        alignItems: "center",
-      }}>
+          alignItems: "center"
+        }}
+      >
         <div
           style={{
             height: 300,
@@ -53,8 +54,7 @@ class ConnectedLogin extends Component {
             }}
           >
             {" "}
-            Log in
-            {" "}
+            Log in{" "}
           </div>
           <TextField
             value={this.state.userName}
@@ -76,10 +76,8 @@ class ConnectedLogin extends Component {
             variant="outlined"
             color="primary"
             onClick={() => {
-
               // Simulate authentication call
               Auth.authenticate(this.state.userName, this.state.pass, user => {
-
                 if (!user) {
                   this.setState({ wrongCred: true });
                   return;

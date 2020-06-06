@@ -29,5 +29,5 @@ export const setLoggedInUser = user => ({
   payload: user
 });
 export const logout = () => ({
-  type: CONSTANTS.LOGOUT,
+  type: CONSTANTS.LOGOUT
 });

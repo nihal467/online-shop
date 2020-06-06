@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from "react-router-dom";
 
-const Paging = (props) => {
+const Paging = props => {
   let { parsedQueryStr } = props;
   let itemsPerPage = parseInt(parsedQueryStr.itemsPerPage) || 10;
   let page = parseInt(parsedQueryStr.page) || 1;
@@ -20,7 +20,7 @@ const Paging = (props) => {
       style={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <IconButton

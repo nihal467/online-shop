@@ -24,9 +24,7 @@ class ConnectedOrder extends Component {
 
     return (
       <div style={{ padding: 10 }}>
-        <div style={{ fontSize: 24, marginTop: 10 }}>
-          Order summary
-        </div>
+        <div style={{ fontSize: 24, marginTop: 10 }}>Order summary</div>
         <Table>
           <TableHead>
             <TableRow>

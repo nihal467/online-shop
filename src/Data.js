@@ -184,9 +184,7 @@ const dataForTheMenu = [
         icon: x.icon
       };
     })
-  },
-
+  }
 ];
-
 
 export { sampleProducts, categories, dataForTheMenu };

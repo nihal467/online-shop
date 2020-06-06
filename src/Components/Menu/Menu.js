@@ -13,9 +13,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    showMenu: state.showMenu,
+    showMenu: state.showMenu
   };
 };
 
@@ -26,9 +26,9 @@ class ConnectedMenu extends Component {
     this.state = {
       // initially item with id 1 is expanded
       expandedMenuItems: {
-        1: true,
+        1: true
       },
-      dataForTheMenu,
+      dataForTheMenu
     };
 
     this.renderMenu = this.renderMenu.bind(this);
@@ -59,12 +59,12 @@ class ConnectedMenu extends Component {
                 }}
                 style={{
                   textDecoration: "none",
-                  color: "rgb(32, 32, 34)",
+                  color: "rgb(32, 32, 34)"
                 }}
                 key={x.id}
                 activeStyle={{
                   color: "#4282ad",
-                  fontWeight: "bold",
+                  fontWeight: "bold"
                 }}
               >
                 <ListItem dense button>
@@ -86,12 +86,12 @@ class ConnectedMenu extends Component {
                   dense
                   onClick={() => {
                     // Update in state which menu items are expanded.
-                    this.setState((ps) => {
+                    this.setState(ps => {
                       return {
                         expandedMenuItems: {
                           ...ps.expandedMenuItems,
-                          [x.id]: !ps.expandedMenuItems[x.id],
-                        },
+                          [x.id]: !ps.expandedMenuItems[x.id]
+                        }
                       };
                     });
                   }}
@@ -124,7 +124,7 @@ class ConnectedMenu extends Component {
       <div
         style={{
           backgroundColor: "#FAFAFB",
-          minWidth: 250,
+          minWidth: 250
         }}
       >
         {/* Render our menu */}

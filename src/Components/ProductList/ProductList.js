@@ -16,7 +16,7 @@ class ProductList extends Component {
     this.state = {
       loading: false,
       totalItemsCount: null,
-      items: [],
+      items: []
     };
     this.updateQueryStr = this.updateQueryStr.bind(this);
   }
@@ -32,7 +32,7 @@ class ProductList extends Component {
     this.setState({
       items: results.data,
       loading: false,
-      totalItemsCount: results.totalLength,
+      totalItemsCount: results.totalLength
     });
   }
 
@@ -81,7 +81,7 @@ class ProductList extends Component {
         />
 
         <div style={{ flex: 1 }}>
-          {this.state.items.map((item) => {
+          {this.state.items.map(item => {
             return <Item key={item.id} item={item} />;
           })}
         </div>

@@ -10,7 +10,7 @@ import { withRouter } from "react-router-dom";
 
 class ProductsHeader extends Component {
   state = {
-    openPriceDialog: false,
+    openPriceDialog: false
   };
 
   render() {
@@ -37,7 +37,7 @@ class ProductsHeader extends Component {
             style={{
               fontWeight: "bold",
               fontSize: 12,
-              color: "gray",
+              color: "gray"
             }}
           >
             {keyword}
@@ -59,10 +59,10 @@ class ProductsHeader extends Component {
               <Checkbox
                 color="primary"
                 checked={usePriceFilter}
-                onChange={(e) => {
+                onChange={e => {
                   updateQueryStr({
                     usePriceFilter: e.target.checked,
-                    page: 1,
+                    page: 1
                   });
                 }}
               />
@@ -76,7 +76,7 @@ class ProductsHeader extends Component {
                 style={{ marginRight: 20 }}
                 onClick={() => {
                   this.setState({
-                    openPriceDialog: true,
+                    openPriceDialog: true
                   });
                 }}
               >
@@ -86,7 +86,7 @@ class ProductsHeader extends Component {
           )}
           <Select
             value={sortValue}
-            onChange={(e) => {
+            onChange={e => {
               updateQueryStr({ sortValue: e.target.value });
             }}
           >
@@ -109,7 +109,7 @@ class ProductsHeader extends Component {
           }}
           onClose={() =>
             this.setState({
-              openPriceDialog: false,
+              openPriceDialog: false
             })
           }
         />

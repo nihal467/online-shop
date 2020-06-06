@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 
 class PriceDialog extends Component {
   state = {
-    lastOpenedStatus: false,
+    lastOpenedStatus: false
   };
 
   // Only when this dialog is opened, copy the prices from props to local state.
@@ -15,7 +15,7 @@ class PriceDialog extends Component {
       return {
         min: props.min,
         max: props.max,
-        lastOpenedStatus: true,
+        lastOpenedStatus: true
       };
     }
 
@@ -37,7 +37,7 @@ class PriceDialog extends Component {
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
+              alignItems: "center"
             }}
           >
             <DialogTitle>Enter price range</DialogTitle>
@@ -49,13 +49,13 @@ class PriceDialog extends Component {
                 style={{ width: 70 }}
                 placeholder="Min"
                 label="Min"
-                onChange={(e) => {
+                onChange={e => {
                   let val = parseInt(e.target.value, 10);
                   if (Number.isNaN(val) || val < 0 || val > 100000) {
                     return;
                   }
                   this.setState({
-                    min: val,
+                    min: val
                   });
                 }}
               />
@@ -65,14 +65,14 @@ class PriceDialog extends Component {
                 style={{ width: 70, marginLeft: 20 }}
                 placeholder="Max"
                 label="Max"
-                onChange={(e) => {
+                onChange={e => {
                   let val = parseInt(e.target.value, 10);
 
                   if (Number.isNaN(val) || val < 0 || val > 100000) {
                     return;
                   }
                   this.setState({
-                    max: val,
+                    max: val
                   });
                 }}
               />

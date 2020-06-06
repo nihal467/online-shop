@@ -8,11 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  showCartDlg,
-  toggleMenu,
-  logout
-} from "../../Redux/Actions";
+import { showCartDlg, toggleMenu, logout } from "../../Redux/Actions";
 import cartImage from "../../Images/logo2.png";
 import Auth from "../../Auth";
 import { categories } from "../../Data";
@@ -65,12 +61,7 @@ class ConnectedHeader extends Component {
               <MenuIcon size="medium" />
             </IconButton>
 
-            <img
-              src={cartImage}
-              alt={"Logo"}
-              style={{ marginLeft: 10 }}
-
-            />
+            <img src={cartImage} alt={"Logo"} style={{ marginLeft: 10 }} />
             <TextField
               label="Search products"
               value={this.state.searchTerm}
@@ -102,9 +93,9 @@ class ConnectedHeader extends Component {
               onClick={() => {
                 this.props.history.push(
                   "/?category=" +
-                  this.state.categoryFilterValue +
-                  "&term=" +
-                  this.state.searchTerm
+                    this.state.categoryFilterValue +
+                    "&term=" +
+                    this.state.searchTerm
                 );
               }}
             >
@@ -125,15 +116,15 @@ class ConnectedHeader extends Component {
                 Log in
               </Button>
             ) : (
-                <Avatar
-                  onClick={event => {
-                    this.setState({ anchorEl: event.currentTarget });
-                  }}
-                  style={{ backgroundColor: "#3f51b5", marginRight: 10 }}
-                >
-                  <Person />
-                </Avatar>
-              )}
+              <Avatar
+                onClick={event => {
+                  this.setState({ anchorEl: event.currentTarget });
+                }}
+                style={{ backgroundColor: "#3f51b5", marginRight: 10 }}
+              >
+                <Person />
+              </Avatar>
+            )}
             <IconButton
               aria-label="Cart"
               onClick={() => {
