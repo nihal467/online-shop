@@ -1,6 +1,7 @@
 # Description
 
-Online shop prototype implemented using React, Redux, React Router, and React Material UI library. 
+Online shop prototype implemented using React, Redux, React Router, and React Material UI library. This project was created mainly 
+for educational purposes, that is to improve my understanding of react.
 
 
 <img src="https://raw.githubusercontent.com/giorgi-m/online-shop/master/src/Images/screenshot.PNG" width="820" height="420">
