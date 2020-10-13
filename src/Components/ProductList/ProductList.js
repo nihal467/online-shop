@@ -9,6 +9,10 @@ import ProductsHeader from "../ProductsHeader/ProductsHeader";
 // This component is responsible for fetching products.
 // It determines from query string which products to fetch.
 // The URL is checked on initial mount and when URL changes.
+// Lot of the state for this component and its children
+// lives actually in the query string (e.g., category of products, price filter).
+// The flow is on user action, we modify the query string, then new products are refetched.
+
 class ProductList extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +20,7 @@ class ProductList extends Component {
     this.state = {
       loading: false,
       totalItemsCount: null,
-      items: []
+      items: [],
     };
     this.updateQueryStr = this.updateQueryStr.bind(this);
   }
@@ -24,15 +28,13 @@ class ProductList extends Component {
   async fetchData() {
     this.setState({ loading: true });
 
-    // Parse the query string
-    let qsAsObject = queryString.parse(this.props.location.search);
-
-    let results = await Api.searchItems(qsAsObject);
+    let parsedQueryStr = queryString.parse(this.props.location.search);
+    let results = await Api.searchItems(parsedQueryStr);
 
     this.setState({
       items: results.data,
       loading: false,
-      totalItemsCount: results.totalLength
+      totalItemsCount: results.totalLength,
     });
   }
 
@@ -41,9 +43,11 @@ class ProductList extends Component {
   }
 
   updateQueryStr(newValues) {
-    let current = queryString.parse(this.props.location.search);
+    let currentQueryStr = queryString.parse(this.props.location.search);
+
+    // Navigate to the new URL
     this.props.history.push(
-      "/?" + queryString.stringify({ ...current, ...newValues })
+      "/?" + queryString.stringify({ ...currentQueryStr, ...newValues })
     );
   }
 
@@ -81,7 +85,7 @@ class ProductList extends Component {
         />
 
         <div style={{ flex: 1 }}>
-          {this.state.items.map(item => {
+          {this.state.items.map((item) => {
             return <Item key={item.id} item={item} />;
           })}
         </div>

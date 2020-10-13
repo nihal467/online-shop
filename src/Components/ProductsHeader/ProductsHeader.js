@@ -10,13 +10,12 @@ import { withRouter } from "react-router-dom";
 
 class ProductsHeader extends Component {
   state = {
-    openPriceDialog: false
+    openPriceDialog: false,
   };
 
   render() {
     let { parsedQueryStr, totalItemsCount, updateQueryStr } = this.props;
 
-    // Lot of values come from the query string.
     let usePriceFilter = parsedQueryStr.usePriceFilter === "true";
     let minPrice = parsedQueryStr.minPrice || 0;
     let maxPrice = parsedQueryStr.maxPrice || 1000;
@@ -24,7 +23,7 @@ class ProductsHeader extends Component {
     let keyword = parsedQueryStr.term;
     let category = parsedQueryStr.category;
 
-    let subtitle = (
+    let pageSubtitle = (
       <div>
         <span style={{ fontSize: 12, color: "gray" }}>
           {totalItemsCount +
@@ -37,7 +36,7 @@ class ProductsHeader extends Component {
             style={{
               fontWeight: "bold",
               fontSize: 12,
-              color: "gray"
+              color: "gray",
             }}
           >
             {keyword}
@@ -51,7 +50,7 @@ class ProductsHeader extends Component {
         <div style={{ padding: 10, display: "flex", alignItems: "center" }}>
           <div style={{ flex: 1, fontSize: 24 }}>
             <div>{category ? category : "Popular Products"}</div>
-            {subtitle}
+            {pageSubtitle}
           </div>
 
           <FormControlLabel
@@ -59,10 +58,10 @@ class ProductsHeader extends Component {
               <Checkbox
                 color="primary"
                 checked={usePriceFilter}
-                onChange={e => {
+                onChange={(e) => {
                   updateQueryStr({
                     usePriceFilter: e.target.checked,
-                    page: 1
+                    page: 1,
                   });
                 }}
               />
@@ -76,7 +75,7 @@ class ProductsHeader extends Component {
                 style={{ marginRight: 20 }}
                 onClick={() => {
                   this.setState({
-                    openPriceDialog: true
+                    openPriceDialog: true,
                   });
                 }}
               >
@@ -86,7 +85,7 @@ class ProductsHeader extends Component {
           )}
           <Select
             value={sortValue}
-            onChange={e => {
+            onChange={(e) => {
               updateQueryStr({ sortValue: e.target.value });
             }}
           >
@@ -106,7 +105,7 @@ class ProductsHeader extends Component {
           }}
           onClose={() =>
             this.setState({
-              openPriceDialog: false
+              openPriceDialog: false,
             })
           }
         />

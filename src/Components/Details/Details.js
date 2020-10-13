@@ -12,13 +12,11 @@ class ConnectedDetails extends Component {
   constructor(props) {
     super(props);
 
-    this.isCompMounted = false;
-
     this.state = {
       relatedItems: [],
       quantity: 1,
       item: null,
-      itemLoading: false
+      itemLoading: false,
     };
   }
 
@@ -28,18 +26,15 @@ class ConnectedDetails extends Component {
     let item = await Api.getItemUsingID(productId);
 
     let relatedItems = await Api.searchItems({
-      category: item.category
+      category: item.category,
     });
 
-    // Make sure this component is still mounted before we set state..
-    if (this.isCompMounted) {
-      this.setState({
-        item,
-        quantity: 1,
-        relatedItems: relatedItems.data.filter(x => x.id !== item.id),
-        itemLoading: false
-      });
-    }
+    this.setState({
+      item,
+      quantity: 1,
+      relatedItems: relatedItems.data.filter((x) => x.id !== item.id),
+      itemLoading: false,
+    });
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -50,12 +45,7 @@ class ConnectedDetails extends Component {
   }
 
   componentDidMount() {
-    this.isCompMounted = true;
     this.fetchProductAndRelatedItems(this.props.match.params.id);
-  }
-
-  componentWillUnmount() {
-    this.isCompMounted = false;
   }
 
   render() {
@@ -73,7 +63,7 @@ class ConnectedDetails extends Component {
           style={{
             marginBottom: 20,
             marginTop: 10,
-            fontSize: 22
+            fontSize: 22,
           }}
         >
           {this.state.item.name}
@@ -87,7 +77,7 @@ class ConnectedDetails extends Component {
             style={{
               border: "1px solid lightgray",
               borderRadius: "5px",
-              objectFit: "cover"
+              objectFit: "cover",
             }}
           />
           <div
@@ -95,12 +85,12 @@ class ConnectedDetails extends Component {
               flex: 1,
               marginLeft: 20,
               display: "flex",
-              flexDirection: "column"
+              flexDirection: "column",
             }}
           >
             <div
               style={{
-                fontSize: 16
+                fontSize: 16,
               }}
             >
               Price: {this.state.item.price} $
@@ -117,7 +107,7 @@ class ConnectedDetails extends Component {
               style={{ marginTop: 20, marginBottom: 10, width: 70 }}
               label="Quantity"
               inputProps={{ min: 1, max: 10, step: 1 }}
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({ quantity: parseInt(e.target.value) });
               }}
             />
@@ -129,7 +119,7 @@ class ConnectedDetails extends Component {
                 this.props.dispatch(
                   addItemInCart({
                     ...this.state.item,
-                    quantity: this.state.quantity
+                    quantity: this.state.quantity,
                   })
                 );
               }}
@@ -144,7 +134,7 @@ class ConnectedDetails extends Component {
           style={{
             marginTop: 20,
             marginBottom: 20,
-            fontSize: 22
+            fontSize: 22,
           }}
         >
           Product Description
@@ -153,7 +143,7 @@ class ConnectedDetails extends Component {
           style={{
             maxHeight: 200,
             fontSize: 13,
-            overflow: "auto"
+            overflow: "auto",
           }}
         >
           {this.state.item.description
@@ -166,12 +156,12 @@ class ConnectedDetails extends Component {
           style={{
             marginTop: 20,
             marginBottom: 10,
-            fontSize: 22
+            fontSize: 22,
           }}
         >
           Related Items
         </div>
-        {this.state.relatedItems.slice(0, 3).map(x => {
+        {this.state.relatedItems.slice(0, 3).map((x) => {
           return <Item key={x.id} item={x} />;
         })}
       </div>
