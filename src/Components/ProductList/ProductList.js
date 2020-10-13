@@ -9,10 +9,6 @@ import ProductsHeader from "../ProductsHeader/ProductsHeader";
 // This component is responsible for fetching products.
 // It determines from query string which products to fetch.
 // The URL is checked on initial mount and when URL changes.
-// Lot of the state for this component and its children
-// lives actually in the query string (e.g., category of products, price filter).
-// The flow is on user action, we modify the query string, then new products are refetched.
-
 class ProductList extends Component {
   constructor(props) {
     super(props);
