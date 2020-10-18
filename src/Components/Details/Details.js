@@ -49,20 +49,16 @@ class ConnectedDetails extends Component {
   }
 
   render() {
-    if (this.state.itemLoading) {
+    if (this.state.itemLoading || !this.state.item) {
       return <CircularProgress className="circular" />;
-    }
-
-    if (!this.state.item) {
-      return null;
     }
 
     return (
       <div style={{ padding: 10 }}>
         <div
           style={{
-            marginBottom: 20,
             marginTop: 10,
+            marginBottom: 20,
             fontSize: 22,
           }}
         >
@@ -95,6 +91,7 @@ class ConnectedDetails extends Component {
             >
               Price: {this.state.item.price} $
             </div>
+
             {this.state.item.popular && (
               <div style={{ fontSize: 14, marginTop: 5, color: "#228B22" }}>
                 (Popular product)
@@ -155,15 +152,19 @@ class ConnectedDetails extends Component {
         <div
           style={{
             marginTop: 20,
-            marginBottom: 10,
+            marginBottom: 20,
             fontSize: 22,
           }}
         >
           Related Items
         </div>
-        {this.state.relatedItems.slice(0, 3).map((x) => {
-          return <Item key={x.id} item={x} />;
-        })}
+        {this.state.relatedItems.length ? (
+          this.state.relatedItems.slice(0, 3).map((x) => {
+            return <Item key={x.id} item={x} />;
+          })
+        ) : (
+          <div style={{ fontSize: 13 }}>Not available</div>
+        )}
       </div>
     );
   }
